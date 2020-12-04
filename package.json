@@ -1,0 +1,29 @@
+{
+  "name": "advent-of-code-2020",
+  "version": "1.0.0",
+  "description": "Advent of code solutions",
+  "main": "index.js",
+  "dependencies": {
+    "jest": "^26.6.3"
+  },
+  "jest": {
+    "verbose": true
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrobarikt/advent-of-code-2020.git"
+  },
+  "keywords": [
+    "adventofcode"
+  ],
+  "author": "Tomas Hrobarik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hrobarikt/advent-of-code-2020/issues"
+  },
+  "homepage": "https://github.com/hrobarikt/advent-of-code-2020#readme"
+}
