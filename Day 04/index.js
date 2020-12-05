@@ -9,10 +9,18 @@ function extractPassport(input) {
     return result;
 }
 
-function isPassportValid(passport, required) {
-    return required.every(prop => passport[prop]);
+function hasAllRequiredFields(passport, required) {
+    const input = extractPassport(passport);
+    return required.every(prop => input[prop]);
+}
+
+function solvePartOne(batch) {
+    const isPassportValid = (passport) => {
+        return hasAllRequiredFields(passport, ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'])
+    };
+    return batch.split("\n\n").filter(isPassportValid).length;
 }
 
 module.exports = {
-    extractPassport, isPassportValid
+    extractPassport, hasAllRequiredFields, solvePartOne
 };

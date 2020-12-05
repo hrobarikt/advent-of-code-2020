@@ -1,5 +1,6 @@
-const { extractPassport, isPassportValid } = require("./index");
+const { extractPassport, hasAllRequiredFields, solvePartOne } = require("./index");
 const { test, expect } = require("@jest/globals");
+
 
 
 describe("parsePassport", () => {
@@ -18,18 +19,35 @@ byr:1937 iyr:2017 cid:147 hgt:183cm`)).toEqual({
     })
 })
 
-describe("isPassportValid", () => {
+describe("hasAllRequiredFields", () => {
     test("Should return true if contains all required fields", () => {
-        expect(isPassportValid({ ecl: "gry", cid: 12312 }, ['ecl', 'cid'])).toBe(true);
+        expect(hasAllRequiredFields("ecl:gry cid:12312", ['ecl', 'cid'])).toBe(true);
+    })
+
+    test("Should return true if contains additonal fields", () => {
+        expect(hasAllRequiredFields("ecl:gry cid:12312", ['ecl'])).toBe(true);
     })
 
     test("Should return false if it doesnt contain all required fields", () => {
-        expect(isPassportValid({ ecl: "gry" }, ['ecl', 'cid'])).toBe(false);
+        expect(hasAllRequiredFields("ecl:gry", ['ecl', 'cid'])).toBe(false);
     })
 
     test("Should return false if the required field is empty", () => {
-        expect(isPassportValid({ ecl: "gry", cid: "" }, ['ecl', 'cid'])).toBe(false);
+        expect(hasAllRequiredFields("ecl:gry cid: hcl:#fff", ['ecl', 'cid'])).toBe(false);
     })
 
+})
+
+describe("Solution for part One", () => {
+    test("Should return 2 valid passports for sample", () => {
+        const { sample } = require("./input");
+        expect(solvePartOne(sample)).toBe(2);
+    })
+
+
+    test("Should return 254 valid passports for the input", () => {
+        const { batch } = require("./input");
+        expect(solvePartOne(batch)).toBe(254);
+    })
 })
 
